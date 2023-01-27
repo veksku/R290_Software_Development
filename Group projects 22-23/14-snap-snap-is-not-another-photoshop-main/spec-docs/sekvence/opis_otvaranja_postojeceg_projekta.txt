@@ -1,0 +1,55 @@
+- Kratak opis: Korisnik bira opciju otvaranja postojeceg projekta iz glavnog menija.
+Korisnik unosi putanju. Aplikacija otvara projekat. Korisnik ucitava slike,
+primenjuje transformacije, cuva sliku ili projekat. Korisnik
+zatvara projekat ili aplikaciju.
+
+- Akteri:
+	- Korisnik
+	
+- Preduslovi: 
+	- Aplikacija je pokrenuta i prikazuje glavni meni
+	
+- Postuslovi:
+	- U zavisnosti od izbora korisnika ili su odbacene promene ili je projekat sa transformacijama sacuvan
+	
+
+- Osnovni tok:
+	1. Korisnik bira opciju otvaranja postojeceg projekta iz glavnog menija
+	2. Korisnik unosi putanju
+	        2.1. Ako postoji projekat na datoj putanji
+	           2.1.1. Aplikacija otvara projekat
+	           2.1.2. Korisniku se prikazuje otvoren projekat i radno okruzenje
+	        2.2. U suprotnom, korisniku se prikazuje poruka o gresci
+	3. Sve dok korisnik ne zatvori aplikaciju/projekat
+		3.1. Korisnik ucitava sliku/slike
+		   3.1.1. Korisnik postavlja putanju do slike
+		   3.1.2. Korisnik dobija objekat slike
+		3.2. Korisnik primenjuje transformacije
+		   3.2.1. Korisnik bira transformaciju i podesavanja iste
+		   3.2.1. Korisnik dobija objekat transformacije
+		3.3 Korisnik odbacuje transformaciju
+		   3.3.1. Korisnik bira jednu od kreiranih transformacija koju zeli da odbaci (iskljuci)
+		   3.3.2. Transformacija je odbacena
+		3.4. Korisnik prikazuje slike
+		3.5. Korisnik cuva ili odbacuje projekat
+		   3.5.1. Ako je korisnik izabrao da cuva projekat
+		     3.5.1.1. Projekat se cuva
+		   3.5.2. Ako je korsnik izabrao da odbaci promene 
+		     3.5.2.1. Promene se odbacuju, projekat se ne menja	
+	4. Aplikacija se zatvara
+	
+- Alternativni tokovi:
+	A1 - Neocekivan izlaz iz aplikacije. Ukoliko se aplikacija na bilo koji
+	nacin naglo iskljuci, sve potencijalno zapamcene informacije o trenutnom
+	stanju aplikacije se brisu i aplikacija zavrsava rad.
+	Slucaj upotrebe se zavrsava.
+
+	
+- Podtokovi
+	- / 
+	
+- Specijalni zahtevi:
+	- /
+	
+- Dodatne informacije:
+	- /

@@ -1,0 +1,18 @@
+Slucajevi upotrebe
+
+- Pocetak novog projekta
+- Nastavljanje sacuvanog projekta
+- Obrada slika
+	- Ucitavanje slika
+	- Zamena ucitanih slika
+	- Odbacivanje ucitanih slika
+	- Dodavanje transformacija 
+	- Odbacivanje transformacija
+	- Izmene transformacija
+	- Prikazivanje slika
+	- Cuvanje slika na disku
+- Cuvanje aktivnog projekta
+- Trazenje pomoci
+	- Uputstvo za upotrebu
+	- Podacim o verziji i autorima
+

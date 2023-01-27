@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/change.png</file>
+        <file>resources/close.png</file>
+        <file>resources/crop.png</file>
+        <file>resources/heart.png</file>
+        <file>resources/importimage.png</file>
+        <file>resources/importproject.png</file>
+        <file>resources/information.png</file>
+        <file>resources/magic.png</file>
+        <file>resources/merge.png</file>
+        <file>resources/palm.png</file>
+        <file>resources/png.png</file>
+        <file>resources/remove.png</file>
+        <file>resources/save.png</file>
+        <file>resources/saveas.png</file>
+        <file>resources/Scale.png</file>
+        <file>resources/view.png</file>
+        <file>resources/island.png</file>
+        <file>resources/importBack.png</file>
+        <file>resources/cut.png</file>
+        <file>resources/cut2.png</file>
+        <file>resources/writeBack.png</file>
+        <file>resources/changeBack.png</file>
+        <file>resources/switch-png</file>
+        <file>resources/edit2.png</file>
+    </qresource>
+</RCC>

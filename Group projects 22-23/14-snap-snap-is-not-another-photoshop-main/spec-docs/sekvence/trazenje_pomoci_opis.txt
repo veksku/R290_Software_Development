@@ -1,0 +1,40 @@
+- Kratak opis: Korisnik se informise o samoj aplikaciji i nacinu upotrebe pomocu
+detalja i uputstva koji su predstavljeni u glavnom meniju.
+
+- Akteri:
+	- Korisnik
+	
+- Preduslovi: 
+	- Aplikacija je pokrenuta i prikazuje glavni meni.
+	
+- Postuslovi:
+	- Korisnik dobija informacije nacinu koriscenja aplikacije i o njenoj
+	  verziji.
+	
+- Osnovni tok:
+	1. Korisnik bira 'Help' iz glavnog menija.
+	2. Prikazuje se padajuci meni sa opcijama "Dodatne informacije" i
+	   "Uputstvo za koriscenje".
+		2.1 Ako korisnik odabere "Dodatne informacije":
+			2.1.1 Korisniku se prikazuje novi prozor sa svim bitnim
+			      informacijama o aplikaciji.
+		2.2 Ako korisnik odabere "Uputstvo za koriscenje":
+			2.2.1 Korisniku se prikazuje novi prozor koji sadrzi
+			      uputstvo sa osnovnim koracima za koriscenje kao i
+			      navedene sve postojece transformacije.
+	
+- Alternativni tokovi:
+
+	A1 - Neocekivan izlaz iz aplikacije. Ukoliko se aplikacija na bilo koji
+	nacin naglo iskljuci, sve potencijalno zapamcene informacije o trenutnom
+	stanju aplikacije se brisu i aplikacija zavrsava rad.
+	Slucaj upotrebe se zavrsava.
+	
+- Podtokovi:
+	- /
+	
+- Specijalni zahtevi:
+	- /
+	
+- Dodatne informacije:
+	- /

@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=14
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>355</x>
+      <y>745</y>
+      <w>855</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>*proizvodjac_projektant*
+--
+- std::map&lt;unsigned, std::shared_ptr&lt;element&gt; &gt; _elementi
+- std::map&lt;unsigned, std::shared_ptr&lt;cuvar_izlaza&gt; &gt; _gotove_slike
+- std::map&lt;unsigned, std::set&lt;unsigned&gt; &gt; _tabela_izlaza
+- std::map&lt;unsigned, std::vector&lt;std::optional&lt;unsigned&gt; &gt; &gt; _tabela_ulaza
+- unsigned _id_novog_elementa
+--
+- void _postavi_ulaze(const unsigned, const std::vector&lt;std::optional&lt;unsigned&gt; &gt;)
+- void _dodaj_element(const unsigned)
+- void _dodaj_element(const unsigned, const std::string)
+- void _dodaj_element(const unsigned, const std::pair&lt;unsigned, unsigned&gt;, const std::pair&lt;unsigned, unsigned&gt;)
+- void _dodaj_element(const unsigned, const bool, const bool, const std::pair&lt;unsigned, unsigned&gt;)
+- void _dodaj_element(const unsigned, const bool, const bool, const Poravnanje, const std::string)
+- void _obrisi_element(const unsigned)
+- void _obrisi_ulaze_izlaze(const unsigned)
+- std::shared_ptr&lt;gotova_slika&gt; _uradi_sliku(const unsigned)
+- std::chrono::time_point&lt;std::chrono::system_clock&gt; _vreme_izmene(const unsigned) const
++ unsigned dodaj_sliku(const std::string)
++ unsigned dodaj_enhance(const std::optional&lt;unsigned&gt;)
++ unsigned dodaj_isecanje(const std::pair&lt;unsigned, unsigned&gt;, const std::pair&lt;unsigned, unsigned&gt;, const std::optional&lt;unsigned&gt;)
++ unsigned dodaj_skaliranje(const bool, const bool, const std::pair&lt;unsigned, unsigned&gt;, const std::optional&lt;unsigned&gt;)
++ unsigned dodaj_spajanje(const bool, const bool, const Poravnanje, const std::string, const std::optional&lt;unsigned&gt;, const std::optional&lt;unsigned&gt;)
++ void promeni_ulaz(const unsigned, const unsigned, const unsigned)
++ void promeni_sliku(const unsigned, const std::string)
++ void promeni_isecanje(const unsigned, const std::pair&lt;unsigned, unsigned&gt;, const std::pair&lt;unsigned, unsigned&gt;)
++ void promeni_skaliranje(const unsigned, const bool, const bool, const std::pair&lt;unsigned, unsigned&gt;)
++ void promeni_spajanje(const unsigned, const bool, const bool, const Poravnanje, const std::string)
++ void obrisi_element(const unsigned)
++ std::shared_ptr&lt;gotova_slika&gt; uradi_sliku(const unsigned)
++ QVariant dohvati_stanje() const
++ void postavi_stanje(const QVariant)
++ void reset()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1385</x>
+      <y>780</y>
+      <w>300</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>/element/
+--
++ const unsigned broj_ulaza
++ const std::chrono::time_point&lt;std::chrono::system_clock&gt; vreme
+--
++ /std::shared_ptr&lt;Slika&gt; primeni()/
++ /std::shared_ptr&lt;Slika&gt; primeni(std::shared_ptr&lt;Slika&gt;)/
++ /std::shared_ptr&lt;Slika&gt; primeni(std::shared_ptr&lt;Slika&gt;, std::shared_ptr&lt;Slika&gt;)/
++ /QVariant dohvati_stanje()/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>745</y>
+      <w>280</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>*cuvar_izlaza*
+--
++ const std::shared_ptr&lt;gotova_slika&gt; slika
++ const std::chrono::time_point&lt;std::chrono::system_clock&gt; vreme
+--
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1345</x>
+      <y>950</y>
+      <w>215</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>*cuvar_slike*
+--
+- const std::string _putanja;
+- const std::shared_ptr&lt;Slika&gt; _original;
+--
++ std::shared_ptr&lt;Slika&gt; primeni()
++ std::shared_ptr&lt;Slika&gt; primeni(std::shared_ptr&lt;Slika&gt;)
++ std::shared_ptr&lt;Slika&gt; primeni(std::shared_ptr&lt;Slika&gt;, std::shared_ptr&lt;Slika&gt;)
++ QVariant dohvati_stanje()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1175</x>
+      <y>1150</y>
+      <w>540</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>*slika*
+--
+- int height
+- int width
+- std::string putanja
++ Magick::Image m_slika;
+--
++ void enhance()
++ void iseci(const std::pair&lt;unsigned, unsigned&gt;, const std::pair&lt;unsigned, unsigned&gt;)
++ void skaliraj(const bool, const bool, const std::pair&lt;unsigned, unsigned&gt;)
++ void zalepi(std::shared_ptr&lt;Slika&gt;, const bool, const Poravnanje, const std::string)
++ bool sacuvajNaDisku(std::string)
++ bool sacuvajNaDisku()
++ Magick::Image dohvati_sliku()
++ int getHeight()
++ int getWidth()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1565</x>
+      <y>890</y>
+      <w>215</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>/transformacija/
+--
+--
++ std::shared_ptr&lt;Slika&gt; primeni()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1590</x>
+      <y>1045</y>
+      <w>375</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>*isecanje*
+--
+- std::tuple&lt;unsigned, unsigned&gt; gornja_leva_tacka
+- std::tuple&lt;unsigned, unsigned&gt; donja_desna_tacka
+--
++ std::shared_ptr&lt;slika&gt; primeni(std::shared_ptr&lt;slika&gt;)
++ QVariant dohvati_stanje()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2030</x>
+      <y>1045</y>
+      <w>290</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>*skaliranje*
+--
+- bool cuva_odnos_ivica
+- bool prema_vecoj_ivici
+- std::tuple&lt;unsigned, unsigned&gt; dimenzije
+--
++ std::shared_ptr&lt;slika&gt; primeni(std::shared_ptr&lt;slika&gt;)
++ QVariant dohvati_stanje()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2750</x>
+      <y>1045</y>
+      <w>325</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>*spajanje*
+--
+- bool horizontalno
+- bool obrnutim_redosledom
+- Poravnanje poravnanje
+- std::string boja_pozadine
+--
++ std::shared_ptr&lt;slika&gt; primeni(std::shared_ptr&lt;slika&gt;, std::shared_ptr&lt;slika&gt;)
++ QVariant dohvati_stanje()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1450</x>
+      <y>840</y>
+      <w>15</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1610</x>
+      <y>840</y>
+      <w>15</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1695</x>
+      <y>970</y>
+      <w>15</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1205</x>
+      <y>775</y>
+      <w>190</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;360.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>275</x>
+      <y>745</y>
+      <w>90</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1445</x>
+      <y>1010</y>
+      <w>15</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1710</x>
+      <y>1115</y>
+      <w>475</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;90.0;620.0;90.0;930.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1760</x>
+      <y>970</y>
+      <w>425</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;610.0;100.0;830.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2855</x>
+      <y>910</y>
+      <w>15</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1710</x>
+      <y>1115</y>
+      <w>1165</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;1890.0;150.0;2310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>145</x>
+      <y>780</y>
+      <w>1175</w>
+      <h>615</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..n</panel_attributes>
+    <additional_attributes>2330.0;1200.0;10.0;1200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>355</x>
+      <y>435</y>
+      <w>855</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>*pregovarac*
+--
+- proizvodjac_projektant Proizvodjac_Projektant
+- std::map&lt;unsigned, QString&gt; element_state
+- std::map&lt;unsigned, unsigned&gt; ulazi
++ std::shared_ptr&lt;gotova_slika&gt; currentImg
+--
++ explicit Pregovarac(QWidget *)
++ unsigned createImg(QString)
++ QImage* toQImage(Magick::Image)
++ QImage* showCurrentImg(unsigned)
++ unsigned CropImage(const unsigned, const unsigned, const unsigned, const unsigned, unsigned)
++ unsigned ScaleImage(const bool, const bool, const std::pair&lt;unsigned, unsigned&gt;, unsigned)
++ unsigned mergeImage(const bool, const bool, const Poravnanje, const std::string, const std::optional&lt;unsigned&gt;, const std::optional&lt;unsigned&gt;)
++ unsigned EnhanceImg(unsigned)
++ void changeImage(const unsigned, QString)
++ void changeCrop(const unsigned, const unsigned, const unsigned, const unsigned, const unsigned)
++ void changeScale(const unsigned, const bool, const bool, const std::pair&lt;unsigned, unsigned&gt;)
++ void changeMerge(const unsigned, const bool, const bool, const Poravnanje, const std::string)
++ void removeElement(const unsigned)
++ bool loadProject(QString)
++ bool saveProject(QString)
++ bool saveImage(QString, const unsigned)
++ std::map&lt;unsigned int, QString&gt; getElement_state()
++ std::map&lt;unsigned int, unsigned int&gt; getUlazi()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>345</y>
+      <w>15</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>630</y>
+      <w>15</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>565</x>
+      <y>0</y>
+      <w>280</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>*main_window*
+--
+- Ui::MainWindow *ui
+- QGraphicsScene *scene
+- QGraphicsView *display_window
+- QString path
+- QString fileName
+- Pregovarac pregovarac
+- std::map&lt;QString,std::pair&lt;QString, bool&gt;&gt; labelText
+- std::map&lt;unsigned, QString&gt; element_type
+- std::map&lt;unsigned, displayElement*&gt; elementi
+- std::map&lt;unsigned, std::vector&lt;bool&gt;&gt; ulaz_pozicije
+- std::map&lt;std::pair&lt;qreal, qreal&gt;, bool&gt; popunjene_pozicije
+- unsigned change_element
+- qreal element_x
+- qreal element_y
+- bool remove
+--
+- void load_project()
+- QPointF find_position(unsigned id_ulaza, unsigned element_id)
++ void on_import_project_triggered()
++ void on_import_image_triggered()
++ void on_path_button_accepted()
++ void on_path_button_rejected()
++ void on_cropp_button_clicked()
++ void on_scale_button_2_clicked()
++ void on_action_help_triggered()
++ void on_action_about_triggered()
++ void on_action_change_triggered()
++ void on_change_button_accepted()
++ void on_actionscale_triggered()
++ void on_actionCrop_triggered()
++ void on_actionMerge_triggered()
++ void on_merge_btn_ok_clicked()
++ void on_change_button_rejected()
++ void on_actionView_triggered()
++ void on_actionRemove_triggered()
++ void on_save_triggered()
++ void on_actionExport_image_triggered()
++ void on_actionEnhance_triggered()
++ void on_save_as_triggered()
++ void on_crop_exit_clicked()
++ void on_scale_exit_clicked()
++ void on_merge_exit_clicked()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1310</x>
+      <y>1360</y>
+      <w>275</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>/gotova_slika/
+--
+
+--
+/+ Magick::Image dohvati_sliku()/
+/+ bool sacuvajNaDisku()/
+/+ bool sacuvajNaDisku(std::string)/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1440</x>
+      <y>1270</y>
+      <w>15</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>715</x>
+      <y>1000</y>
+      <w>605</w>
+      <h>375</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>1190.0;730.0;10.0;730.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1590</x>
+      <y>950</y>
+      <w>345</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>/transformacija_prvog_reda/
+--
+--
++ std::shared_ptr&lt;slika&gt; primeni(std::shared_ptr&lt;slika&gt;, std::shared_ptr&lt;slika&gt;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1610</x>
+      <y>910</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2750</x>
+      <y>890</y>
+      <w>240</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>/transformacija_drugog_reda/
+--
+--
++ std::shared_ptr&lt;slika&gt; primeni(std::shared_ptr&lt;slika&gt;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1775</x>
+      <y>890</y>
+      <w>985</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;1950.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2380</x>
+      <y>1045</y>
+      <w>250</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>*enhance*
+--
+
+--
++ std::shared_ptr&lt;slika&gt; primeni(std::shared_ptr&lt;slika&gt;)
++ QVariant dohvati_stanje()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1710</x>
+      <y>1115</y>
+      <w>805</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;1360.0;120.0;1590.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1825</x>
+      <y>970</y>
+      <w>690</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;950.0;60.0;1360.0;150.0</additional_attributes>
+  </element>
+</diagram>
