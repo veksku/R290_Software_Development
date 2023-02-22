@@ -1,0 +1,24 @@
+{
+  "sources": [
+      {
+        "volume": 1240,
+        "name": "Јuzni cevovod"
+      },
+      {
+        "volume": 1426,
+        "name": "Mreza slavina"
+      },
+      {
+        "volume": 626,
+        "name": "Pokretna cisterna"
+      },
+      {
+        "volume": 1434,
+        "name": "Severni cevovod"
+      },
+      {
+        "volume": 726,
+        "name": "Podzemni izvori"
+      }
+	]
+}
