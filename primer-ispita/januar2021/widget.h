@@ -25,6 +25,8 @@ public slots:
 
 private:
     bool deserializeSources();
+    bool deserializeSources2();
+    bool deserializeSources3();
     void showSources();
     void showTotalVolume();
 

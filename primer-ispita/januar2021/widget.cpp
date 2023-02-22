@@ -5,7 +5,11 @@
 
 #include <QFileDialog>
 #include <QXmlStreamReader>
+#include <QJsonDocument>
+#include <QDataStream>
 #include <QMutexLocker>
+
+#include <iostream>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -25,7 +29,7 @@ Widget::~Widget()
 
 void Widget::onFillSources()
 {
-    const auto success = deserializeSources();
+    const auto success = deserializeSources3();
     if(!success){
         return;
     }
@@ -72,7 +76,7 @@ void Widget::onSourceLostFluid(unsigned int lostFluid)
 
 bool  Widget::deserializeSources()
 {
-    const auto fileName = QFileDialog::getOpenFileName(this, "Select XML file with Sources.", "", "XML files (*.xml)");
+    const auto fileName = QFileDialog::getOpenFileName(this, "Select an XML file with Sources.", "", "XML files (*.xml)");
     QFile input(fileName);
     if (!input.open(QFile::ReadOnly)){
         return false;
@@ -100,6 +104,59 @@ bool  Widget::deserializeSources()
         }
         source->fromQVariant(map);
         m_sources.push_back(source);
+    }
+
+    return true;
+}
+
+bool Widget::deserializeSources2() //JSON
+{
+    const auto fileName = QFileDialog::getOpenFileName(this, "Select a JSON file with Sources.", "", "JSON files (*.json)");
+    QFile input(fileName);
+    if (!input.open(QFile::ReadOnly)){
+        return false;
+    }
+
+    QJsonDocument doc(QJsonDocument::fromJson(input.readAll()));
+
+    QVariant variant = doc.toVariant();
+
+    qDeleteAll(m_sources);
+    m_sources.clear();
+
+    QVariantMap map = variant.toMap();
+    const auto sources = map.value("sources").toList();
+    for(const auto& source : sources){
+        auto sourceNew = new Source;
+        sourceNew->fromQVariant(source);
+        m_sources.push_back(sourceNew);
+    }
+
+    return true;
+}
+
+bool Widget::deserializeSources3() //binary mozda ne radi
+{
+    const auto fileName = QFileDialog::getOpenFileName(this, "Select a binary file with Sources.", "", "bin files (*.bin)");
+    QFile input(fileName);
+    if (!input.open(QFile::ReadOnly)){
+        return false;
+    }
+
+    QDataStream dataStream(&input);
+    QVariant variant;
+
+    dataStream >> variant;
+
+    qDeleteAll(m_sources);
+    m_sources.clear();
+
+    QVariantMap map = variant.toMap();
+    const auto sources = map.value("sources").toList();
+    for(const auto& source : sources){
+        auto sourceNew = new Source;
+        sourceNew->fromQVariant(source);
+        m_sources.push_back(sourceNew);
     }
 
     return true;
