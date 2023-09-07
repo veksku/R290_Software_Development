@@ -1,0 +1,24 @@
+{
+  "sources": [
+      {
+        "volume": 1740,
+        "name": "Zapadni cevovod"
+      },
+      {
+        "volume": 1126,
+        "name": "Roj slavina"
+      },
+      {
+        "volume": 806,
+        "name": "Stabilna cisterna"
+      },
+      {
+        "volume": 1934,
+        "name": "Istocni cevovod"
+      },
+      {
+        "volume": 126,
+        "name": "Podzemni bunar"
+      }
+	]
+}
