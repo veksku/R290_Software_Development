@@ -4,37 +4,31 @@
 #include <QRandomGenerator>
 #include <QMutexLocker>
 
-SourceThread::SourceThread(QVector<Source *> sources, QMutex *mutex, QObject *parent)
+SourceThread::SourceThread(QVector<Source *> izvori, QMutex *mutex, QObject *parent)
     :QThread(parent)
-    , m_sources(sources)
+    , m_izvori(izvori)
     , m_mutex(mutex)
 {
-
 }
 
 void SourceThread::run()
 {
-    for(;;)
-    {
-
-        const auto ms = (QRandomGenerator::global()->generate() % 6)*100u + 500u;
+    for(;;){
+        const auto ms = (QRandomGenerator::global()->generate() % 6) * 100u + 500u;
         msleep(ms);
-        const auto index = QRandomGenerator::global()->generate() % m_sources.size();
-        const auto fluidLeft = m_sources[index]->volume();
-        if (fluidLeft == 0u){
+        const auto index = QRandomGenerator::global()->generate() % m_izvori.size();
+        const auto fluidLeft = m_izvori[index]->zapremina();
+        if (fluidLeft == 0)
             continue;
-        }
 
         QMutexLocker lock(m_mutex);
 
+        const auto fluidLost = qMin(fluidLeft, QRandomGenerator::global()->generate() % 100 + 100u);
+        m_izvori[index]->runOut(fluidLost);
 
-        const auto fluidLost = qMin(fluidLeft, QRandomGenerator::global()->generate() % 100 + 100); // izmedju 100 i 200
-        m_sources[index]->runOut(fluidLost);
+        emit signalST(fluidLost);
 
-        emit sourceLostFluid(fluidLost);
-
-        if(m_sources[index]->volume() == 0u){
+        if(m_izvori[index]->zapremina() == 0)
             break;
-        }
     }
 }

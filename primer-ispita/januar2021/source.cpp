@@ -1,5 +1,7 @@
 #include "source.h"
 
+
+
 Source::Source()
 {
 
@@ -9,16 +11,21 @@ void Source::fromQVariant(const QVariant &variant)
 {
     const auto map = variant.toMap();
 
-    m_name = map.value("name").toString();
-    m_volume = map.value("volume").toUInt();
+    m_naziv = map.value("name").toString();
+    m_zapremina = map.value("volume").toUInt();
 }
 
-QString Source::toQString() const
+QString Source::toQString()
 {
-    return m_name + " - " + (m_volume == 0u ? "izvor je iscrpljen" : QString::number(m_volume));
+    return m_naziv + " - " + (m_zapremina == 0u ? "izvor je iscrpljen" : QString::number(m_zapremina));
 }
 
-void Source::runOut(unsigned int fluidLost)
+unsigned int Source::zapremina() const
 {
-    m_volume -= fluidLost; //ne mora provera jer se ona vrsi u niti ranije
+    return m_zapremina;
+}
+
+void Source::runOut(const unsigned int fluidLost)
+{
+    m_zapremina -= fluidLost;
 }

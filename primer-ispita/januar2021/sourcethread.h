@@ -2,6 +2,8 @@
 #define SOURCETHREAD_H
 
 #include <QThread>
+#include <QObject>
+#include <QVector>
 #include <QMutex>
 
 class Source;
@@ -10,16 +12,16 @@ class SourceThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit SourceThread(QVector<Source *> sources, QMutex *mutex, QObject *parent = nullptr);
+    explicit SourceThread(QVector<Source *> izvori, QMutex *mutex, QObject *parent = nullptr);
 
 protected:
     void run() override;
 
 signals:
-    void sourceLostFluid(unsigned fluidLost);
+    void signalST(unsigned fluidLost);
 
 private:
-    QVector<Source *> m_sources;
+    QVector<Source *> m_izvori;
     QMutex *m_mutex;
 };
 
